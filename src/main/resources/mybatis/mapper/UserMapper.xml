@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    UserMapper.xml - 用户表 MyBatis SQL 映射文件
+    命名空间：com.blog.mapper.UserMapper
+    功能：用户增删改查，按用户名查询（登录、唯一性校验）
+    注意：user 是 MySQL 保留字，表名使用反引号包裹
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.UserMapper">
+
+    <!-- 插入新用户（自增主键回填） -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `user` (username, password, email, phone, nickname, create_time, update_time)
+        VALUES (#{username}, #{password}, #{email}, #{phone}, #{nickname}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!-- 根据用户名查询用户（登录校验、注册重复检查） -->
+    <select id="findByUsername" resultType="com.blog.entity.User">
+        SELECT * FROM `user` WHERE username = #{username}
+    </select>
+
+    <!-- 根据主键查询用户 -->
+    <select id="findById" resultType="com.blog.entity.User">
+        SELECT * FROM `user` WHERE id = #{id}
+    </select>
+
+    <!-- 更新用户信息（密码、邮箱、电话、更新时间） -->
+    <update id="update">
+        UPDATE `user`
+        SET password = #{password}, email = #{email}, phone = #{phone}, update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 更新用户个人资料（昵称、个人简介） -->
+    <update id="updateProfile">
+        UPDATE `user`
+        SET nickname = #{nickname}, bio = #{bio}, update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <!-- 更新用户头像路径 -->
+    <update id="updateAvatar">
+        UPDATE `user` SET avatar = #{avatar} WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键删除用户 -->
+    <delete id="deleteById">
+        DELETE FROM `user` WHERE id = #{id}
+    </delete>
+
+    <!-- 查询所有用户列表 -->
+    <select id="findAll" resultType="com.blog.entity.User">
+        SELECT * FROM `user`
+    </select>
+</mapper>

@@ -1,0 +1,85 @@
+<!--
+    profile.html - 个人中心页面
+    功能：查看/编辑个人资料，上传头像，修改昵称和简介
+    路由：/profile.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 — 青栈博客</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🌊 青栈博客</h1>
+        <a href="/profile.html" id="userAvatarContainer" class="avatar-wrapper" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.5);padding:6px 14px;border-radius:999px;border:1px solid rgba(59,130,246,0.2);text-decoration:none;">
+            <span style="color:var(--text-muted);font-size:0.85rem;">👤 加载中...</span>
+        </a>
+        <nav>
+            <a href="/home.html" data-page="home"><span>首页</span></a>
+            <a href="/article.html" data-page="article"><span>文章</span></a>
+            <a href="/publish.html" data-page="publish"><span>写文章</span></a>
+            <a id="navLogout" href="javascript:void(0)"><span>退出</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>👤 个人中心</h1>
+            <p class="page-subtitle">管理你的头像、昵称和个人简介</p>
+        </div>
+
+        <!-- 头像区域 -->
+        <div class="form-card" style="text-align:center;margin-bottom:24px;">
+            <div class="avatar-upload-area" id="profileAvatarArea">
+                <div class="avatar-loading">加载中...</div>
+            </div>
+            <label class="upload-btn" for="avatarFileInput" style="cursor:pointer;display:inline-block;margin-top:12px;padding:8px 18px;background:var(--blue-50);color:var(--blue-600);border-radius:999px;font-size:0.9rem;font-weight:600;transition:all var(--transition-fast);">
+                📷 更换头像
+                <input type="file" id="avatarFileInput" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none">
+            </label>
+            <p id="avatarStatus" style="font-size:0.82rem;color:var(--text-muted);margin-top:8px;"></p>
+        </div>
+
+        <!-- 个人资料编辑 -->
+        <div class="form-card">
+            <h3 style="margin-bottom:20px;">✏️ 编辑资料</h3>
+
+            <div class="form-group">
+                <label>昵称</label>
+                <input id="profileNickname" type="text" placeholder="请输入昵称">
+            </div>
+
+            <div class="form-group">
+                <label>个人简介</label>
+                <textarea id="profileBio" rows="4" placeholder="介绍一下自己..."></textarea>
+            </div>
+
+            <div class="modal-actions" style="margin-top:20px;">
+                <button id="btnSaveProfile" style="min-width:120px;">💾 保存资料</button>
+            </div>
+        </div>
+
+        <!-- 账号信息 -->
+        <div class="form-card" style="margin-top:24px;">
+            <h3 style="margin-bottom:16px;">📧 账号信息</h3>
+            <div style="color:var(--text-secondary);line-height:2;">
+                <div>用户名：<span id="infoUsername" style="font-weight:600;">-</span></div>
+                <div>邮箱：<span id="infoEmail" style="font-weight:600;">-</span></div>
+                <div>电话：<span id="infoPhone" style="font-weight:600;">-</span></div>
+                <div>注册时间：<span id="infoCreateTime" style="font-weight:600;">-</span></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>© 2026 青栈博客 · 个人中心</footer>
+</div>
+
+<script src="/js/main.js"></script>
+<script>initUser();</script>
+<script src="/js/profile.js"></script>
+</body>
+</html>

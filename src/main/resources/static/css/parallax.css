@@ -1,0 +1,105 @@
+/* ================================================================
+   parallax.css — 视差山景背景
+   纯 CSS 复刻 MountainVistaParallax 组件效果
+   图层从远到近叠加，自行车动画
+   ================================================================ */
+
+/* 容器 — 固定全屏，放在内容下层 */
+.parallax-scene {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 通用图层样式 */
+.parallax-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: auto var(--layer-size);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* ---- 远山图层（从远到近） ---- */
+.parallax-layer-6 {
+  --layer-size: 222px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/6.png');
+  animation: parallax_scroll 120s linear infinite;
+  z-index: 1;
+}
+.parallax-layer-5 {
+  --layer-size: 311px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/5.png');
+  animation: parallax_scroll 95s linear infinite;
+  z-index: 1;
+}
+.parallax-layer-4 {
+  --layer-size: 468px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/4.png');
+  animation: parallax_scroll 75s linear infinite;
+  z-index: 1;
+}
+.parallax-layer-3 {
+  --layer-size: 158px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/3.png');
+  animation: parallax_scroll 55s linear infinite;
+  z-index: 3;
+}
+.parallax-layer-2 {
+  --layer-size: 145px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/2.png');
+  animation: parallax_scroll 30s linear infinite;
+  z-index: 4;
+}
+.parallax-layer-1 {
+  --layer-size: 136px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/1.png');
+  animation: parallax_scroll 20s linear infinite;
+  z-index: 5;
+}
+
+/* ---- 自行车图层 ---- */
+.parallax-bike-1 {
+  --layer-size: 75px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/bike.png');
+  background-repeat: no-repeat;
+  animation: bike_ride 10s linear infinite;
+  bottom: 100px;
+  z-index: 2;
+}
+.parallax-bike-2 {
+  --layer-size: 75px;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/24650/bike.png');
+  background-repeat: no-repeat;
+  animation: bike_ride 15s linear infinite;
+  bottom: 100px;
+  z-index: 2;
+}
+
+/* ---- 视差滚动动画 ---- */
+@keyframes parallax_scroll {
+  0%   { background-position: 2765px 100%; }
+  100% { background-position: 550px 100%; }
+}
+
+/* ---- 自行车动画 ---- */
+@keyframes bike_ride {
+  0%   { background-position: -300px 100%; }
+  100% { background-position: 2000px 100%; }
+}
+
+/* 移动端简化：只保留最近 3 层 */
+@media (max-width: 768px) {
+  .parallax-layer-6,
+  .parallax-layer-5,
+  .parallax-layer-4,
+  .parallax-bike-1,
+  .parallax-bike-2 { display: none; }
+}

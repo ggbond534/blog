@@ -1,0 +1,92 @@
+<!--
+    home.html - 青栈博客首页（登录后进入）
+    设计：浅蓝色 · 玻璃态 · 现代简约
+    路由：/home.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青栈博客 — 你的个人空间</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/parallax.css">
+</head>
+<body>
+<!-- 视差山景背景 -->
+<div class="parallax-scene">
+    <div class="parallax-layer parallax-layer-6"></div>
+    <div class="parallax-layer parallax-layer-5"></div>
+    <div class="parallax-layer parallax-layer-4"></div>
+    <div class="parallax-layer parallax-bike-1"></div>
+    <div class="parallax-layer parallax-bike-2"></div>
+    <div class="parallax-layer parallax-layer-3"></div>
+    <div class="parallax-layer parallax-layer-2"></div>
+    <div class="parallax-layer parallax-layer-1"></div>
+</div>
+<div class="container">
+    <header>
+        <h1>🌊 青栈博客</h1>
+        <a href="/profile.html" id="userAvatarContainer" class="avatar-wrapper" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.5);padding:6px 14px;border-radius:999px;border:1px solid rgba(59,130,246,0.2);text-decoration:none;">
+            <span style="color:var(--text-muted);font-size:0.85rem;">👤 加载中...</span>
+        </a>
+        <nav>
+            <a href="/home.html" data-page="home"><span>首页</span></a>
+            <a href="/article.html" data-page="article"><span>文章</span></a>
+            <a href="/category.html" data-page="category"><span>分类</span></a>
+            <a href="/publish.html" data-page="publish"><span>写文章</span></a>
+            <a href="/notifications.html" data-page="notifications" id="navNotification"><span>🔔 通知</span></a>
+            <a id="navLogout" href="javascript:void(0)"><span>退出</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">✨ 优雅写作 · 高效分类 · 轻松管理</p>
+                <div class="hero-title-block">
+                    <div class="hero-badge">🧊 你的创作空间</div>
+                    <h2>
+                        <span class="hero-line1">每一篇文字，</span>
+                        <span class="hero-line2">都是<span class="hero-highlight">思想的光</span></span>
+                    </h2>
+                    <p class="hero-subline">把灵感写下来，让世界看见。在这里，写作是一件轻盈而美好的事。</p>
+                </div>
+                <p class="hero-desc">一个清爽优雅的博客平台，支持文章发布、分类管理、评论互动和内容展示。</p>
+                <div class="hero-tags">
+                    <span class="glass-tag"><i class="tag-dot"></i>玻璃态设计</span>
+                    <span class="glass-tag"><i class="tag-dot"></i>浅蓝主题</span>
+                    <span class="glass-tag"><i class="tag-dot"></i>响应式布局</span>
+                </div>
+                <div class="actions">
+                    <a class="button" href="/article.html">📖 浏览文章</a>
+                    <a class="button outline" href="/publish.html">✏️ 写文章</a>
+                </div>
+            </div>
+            <div class="hero-cards">
+                <article class="feature-card"><h3>📝 流畅写作</h3><p>一键发布文章，支持分类、阅读统计和评论功能。</p></article>
+                <article class="feature-card"><h3>🎨 现代设计</h3><p>玻璃态卡片、柔和渐变、响应式布局。</p></article>
+                <article class="feature-card"><h3>⚡ 即刻上手</h3><p>注册、登录、发布文章，三步开启创作之旅。</p></article>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stats-card"><p>活跃用户</p><h3>12K+</h3><span>每日稳定增长 ↑</span></article>
+            <article class="stats-card"><p>文章总数</p><h3>480+</h3><span>持续更新中 ✨</span></article>
+            <article class="stats-card"><p>内容分类</p><h3>7 类</h3><span>日常 / 其他 结构清晰</span></article>
+        </section>
+
+        <section class="feature-grid">
+            <div class="feature-item"><h4>📋 文章管理</h4><p>快速搜索、浏览分类、查看详情，内容导航清晰直观。</p></div>
+            <div class="feature-item"><h4>🗂️ 分类系统</h4><p>按「日常」与「其他」两大分组灵活管理分类。</p></div>
+            <div class="feature-item"><h4>💬 评论互动</h4><p>支持二级评论回复，读者可参与讨论。</p></div>
+        </section>
+    </main>
+
+    <footer>© 2026 青栈博客 · 让创作如沐清风</footer>
+</div>
+
+<script src="/js/main.js"></script>
+<script>initUser();</script>
+</body>
+</html>

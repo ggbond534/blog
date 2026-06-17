@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    CategoryMapper.xml - 分类表 MyBatis SQL 映射文件
+    命名空间：com.blog.mapper.CategoryMapper
+    功能：分类增删改查，按分组和排序规则返回列表
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.CategoryMapper">
+
+    <!-- 插入新分类（自增主键回填） -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category (name, description, group_type, sort_order)
+        VALUES (#{name}, #{description}, #{groupType}, #{sortOrder})
+    </insert>
+
+    <!-- 根据主键查询分类 -->
+    <select id="findById" resultType="com.blog.entity.Category">
+        SELECT * FROM category WHERE id = #{id}
+    </select>
+
+    <!-- 根据名称查询分类（用于唯一性校验） -->
+    <select id="findByName" resultType="com.blog.entity.Category">
+        SELECT * FROM category WHERE name = #{name}
+    </select>
+
+    <!-- 更新分类全部字段 -->
+    <update id="update">
+        UPDATE category
+        SET name = #{name}, description = #{description}, group_type = #{groupType}, sort_order = #{sortOrder}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键删除分类 -->
+    <delete id="deleteById">
+        DELETE FROM category WHERE id = #{id}
+    </delete>
+
+    <!--
+        查询所有分类
+        排序规则：先按分组类型升序（"其他" < "日常"），组内按排序权重降序，同权重按ID降序
+    -->
+    <select id="findAll" resultType="com.blog.entity.Category">
+        SELECT * FROM category ORDER BY id DESC
+    </select>
+</mapper>

@@ -1,0 +1,49 @@
+<!--
+    notifications.html - 消息通知页面
+    路由：/notifications.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息通知 — 青栈博客</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🌊 青栈博客</h1>
+        <a href="/profile.html" id="userAvatarContainer" class="avatar-wrapper" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.5);padding:6px 14px;border-radius:999px;border:1px solid rgba(59,130,246,0.2);text-decoration:none;">
+            <span style="color:var(--text-muted);font-size:0.85rem;">👤 加载中...</span>
+        </a>
+        <nav>
+            <a href="/home.html" data-page="home"><span>首页</span></a>
+            <a href="/article.html" data-page="article"><span>文章</span></a>
+            <a href="/category.html" data-page="category"><span>分类</span></a>
+            <a href="/publish.html" data-page="publish"><span>写文章</span></a>
+            <a href="/notifications.html" data-page="notifications"><span>🔔 通知</span></a>
+            <a id="navLogout" href="javascript:void(0)"><span>退出</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+                <h1>🔔 消息通知</h1>
+                <p class="page-subtitle">查看你的文章被点赞的消息</p>
+            </div>
+            <button id="btnReadAll" style="min-width:auto;padding:8px 16px;font-size:0.85rem;">✅ 全部已读</button>
+        </div>
+
+        <div id="notificationList" class="article-list"></div>
+    </main>
+
+    <footer>© 2026 青栈博客 · 消息中心</footer>
+</div>
+
+<script src="/js/main.js"></script>
+<script>initUser();</script>
+<script src="/js/notifications.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!--
+    publish.html - 文章发布页
+    设计：浅蓝色 · 玻璃态 · 现代简约
+    路由：/publish.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布文章 — 青栈博客</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🌊 青栈博客</h1>
+        <a href="/profile.html" id="userAvatarContainer" class="avatar-wrapper" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.5);padding:6px 14px;border-radius:999px;border:1px solid rgba(59,130,246,0.2);text-decoration:none;">
+            <span style="color:var(--text-muted);font-size:0.85rem;">👤 加载中...</span>
+        </a>
+        <nav>
+            <a href="/home.html" data-page="home"><span>首页</span></a>
+            <a href="/article.html" data-page="article"><span>文章</span></a>
+            <a href="/category.html" data-page="category"><span>分类</span></a>
+            <a href="/publish.html" data-page="publish"><span>写文章</span></a>
+            <a href="/notifications.html" data-page="notifications" id="navNotification"><span>🔔 通知</span></a>
+            <a id="navLogout" href="javascript:void(0)"><span>退出</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>✏️ 写文章</h1>
+            <p class="page-subtitle">记录你的想法，分享给世界。</p>
+        </div>
+
+        <div class="form-card publish-panel">
+            <label>📌 标题</label>
+            <input id="title" type="text" placeholder="给你的文章取个好标题...">
+
+            <label>📂 分类</label>
+            <select id="categoryId"></select>
+
+            <label>📝 摘要</label>
+            <input id="summary" type="text" placeholder="一句话概括文章内容（可选）">
+
+            <label>📄 正文</label>
+            <textarea id="content" rows="12" placeholder="开始写作..."></textarea>
+
+            <button id="publishBtn">🚀 发布文章</button>
+        </div>
+
+        <div class="preview-box">
+            <h3>💡 写作提示</h3>
+            <p>好的标题能吸引更多读者；选择合适的分类让文章更容易被发现；摘要为空时系统会自动截取正文前120字作为摘要。</p>
+        </div>
+    </main>
+
+    <footer>© 2026 青栈博客 · 创作从这里开始</footer>
+</div>
+
+<script src="/js/main.js"></script>
+<script>initUser();</script>
+<script src="/js/publish.js"></script>
+</body>
+</html>

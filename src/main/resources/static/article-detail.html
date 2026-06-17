@@ -1,0 +1,62 @@
+<!--
+    article-detail.html - 文章详情页
+    设计：浅蓝色 · 玻璃态 · 现代简约
+    路由：/article-detail.html?id={articleId}
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章详情 — 青栈博客</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🌊 青栈博客</h1>
+        <a href="/profile.html" id="userAvatarContainer" class="avatar-wrapper" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.5);padding:6px 14px;border-radius:999px;border:1px solid rgba(59,130,246,0.2);text-decoration:none;">
+            <span style="color:var(--text-muted);font-size:0.85rem;">👤 加载中...</span>
+        </a>
+        <nav>
+            <a href="/home.html" data-page="home"><span>首页</span></a>
+            <a href="/article.html" data-page="article"><span>文章</span></a>
+            <a href="/category.html" data-page="category"><span>分类</span></a>
+            <a href="/publish.html" data-page="publish"><span>写文章</span></a>
+            <a href="/notifications.html" data-page="notifications" id="navNotification"><span>🔔 通知</span></a>
+            <a id="navLogout" href="javascript:void(0)"><span>退出</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>📄 文章详情</h1>
+            <p class="page-subtitle">阅读全文，参与评论互动。</p>
+        </div>
+        <div class="detail-actions">
+            <a href="/article.html">← 返回文章列表</a>
+            <button onclick="window.location.reload()">🔄 刷新</button>
+        </div>
+
+        <!-- 文章内容 -->
+        <div id="articleDetail" class="article-card"></div>
+
+        <!-- 发表评论 -->
+        <div class="form-card" style="margin-top:28px;">
+            <h3>💬 发表评论</h3>
+            <textarea id="commentContent" rows="3" placeholder="写下你的想法..."></textarea>
+            <button id="commentBtn">提交评论</button>
+        </div>
+
+        <!-- 评论列表 -->
+        <div id="commentList" class="comment-list" style="margin-top:20px;"></div>
+    </main>
+
+    <footer>© 2026 青栈博客 · 留言互动</footer>
+</div>
+
+<script src="/js/main.js"></script>
+<script>initUser();</script>
+<script src="/js/article-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+/* ================================================================
+   auth.css — 登录/注册页面专用样式
+   设计：左右分栏 + 点阵地球 + 玻璃态卡片
+   ================================================================ */
+
+/* ---- 页面容器 ---- */
+.auth-container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+  gap: 0;
+  align-items: center;
+}
+
+/* ---- 左侧面板 ---- */
+.auth-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 36px;
+  overflow: hidden;
+  min-height: 560px;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 28px 0 0 28px;
+}
+
+/* 点阵画布 */
+.dot-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* 品牌信息层 */
+.auth-brand {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.auth-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  font-size: 2rem;
+  background: linear-gradient(135deg, #60a5fa, #2563eb);
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 12px 32px rgba(37,99,235,0.25);
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.auth-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #1e293b, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.auth-desc {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 280px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.auth-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.auth-features span {
+  padding: 7px 16px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(59,130,246,0.15);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.auth-features span:hover {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(59,130,246,0.3);
+  transform: translateY(-2px);
+  color: #2563eb;
+}
+
+/* ---- 右侧面板 ---- */
+.auth-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 40px;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-left: none;
+  border-radius: 0 28px 28px 0;
+  min-height: 560px;
+}
+
+/* 表单容器 */
+.auth-form {
+  display: none;
+  animation: formFadeIn 0.4s ease;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+@keyframes formFadeIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.form-header {
+  margin-bottom: 28px;
+}
+
+.form-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.form-header p {
+  color: #94a3b8;
+  font-size: 0.92rem;
+}
+
+.form-body label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  color: #334155;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.form-body label:first-child {
+  margin-top: 0;
+}
+
+.form-body input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(248,250,252,0.8);
+  border: 1.5px solid rgba(59,130,246,0.15);
+  border-radius: 12px;
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.form-body input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.08);
+  background: #fff;
+}
+
+.form-body input::placeholder {
+  color: #cbd5e1;
+}
+
+/* 密码输入框 */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 44px;
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+  min-width: auto;
+  box-shadow: none;
+}
+
+.toggle-pw:hover {
+  color: #475569;
+  background: rgba(0,0,0,0.04);
+  transform: translateY(-50%);
+}
+
+/* 提交按钮 */
+.auth-submit {
+  width: 100%;
+  margin-top: 24px;
+  padding: 13px 24px;
+  background: linear-gradient(135deg, #60a5fa, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 6px 24px rgba(37,99,235,0.18);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(37,99,235,0.28);
+}
+
+.auth-submit:active {
+  transform: translateY(0);
+}
+
+/* 按钮光泽扫过 */
+.auth-submit::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.auth-submit:hover::after {
+  left: 120%;
+}
+
+.btn-arrow {
+  transition: transform 0.3s ease;
+}
+
+.auth-submit:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* 表单底部 */
+.form-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.form-footer p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.form-footer a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.form-footer a:hover {
+  color: #1d4ed8;
+}
+
+/* ================================================================
+   响应式
+   ================================================================ */
+@media (max-width: 768px) {
+  .auth-container {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .auth-left {
+    border-radius: 24px 24px 0 0;
+    min-height: 240px;
+    padding: 32px 24px;
+  }
+
+  .auth-right {
+    border-radius: 0 0 24px 24px;
+    border-left: 1px solid rgba(255,255,255,0.6);
+    border-top: none;
+    min-height: auto;
+    padding: 28px 24px;
+  }
+
+  .auth-title {
+    font-size: 1.6rem;
+  }
+}
