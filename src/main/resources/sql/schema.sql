@@ -1,7 +1,5 @@
 -- schema.sql - 青栈博客数据库初始化
 -- 启动时自动执行（spring.sql.init.mode=always）
-CREATE DATABASE IF NOT EXISTS blog DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE blog;
 
 -- 用户表
 CREATE TABLE IF NOT EXISTS `user` (
@@ -10,17 +8,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(128) NOT NULL,
   `email` VARCHAR(100) DEFAULT NULL,
   `phone` VARCHAR(20) DEFAULT NULL,
+  `nickname` VARCHAR(50) DEFAULT NULL,
+  `avatar` VARCHAR(255) DEFAULT NULL,
+  `bio` VARCHAR(500) DEFAULT NULL,
   `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_user_username` (`username`),
   KEY `idx_user_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 用户表新增字段：昵称、头像、个人简介
-ALTER TABLE `user` ADD COLUMN IF NOT EXISTS `nickname` VARCHAR(50) DEFAULT NULL AFTER `phone`;
-ALTER TABLE `user` ADD COLUMN IF NOT EXISTS `avatar` VARCHAR(255) DEFAULT NULL AFTER `nickname`;
-ALTER TABLE `user` ADD COLUMN IF NOT EXISTS `bio` VARCHAR(500) DEFAULT NULL AFTER `avatar`;
 
 -- 分类表
 CREATE TABLE IF NOT EXISTS `category` (
@@ -32,10 +28,6 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_category_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 如果分类表已存在但缺少列，补上
-ALTER TABLE `category` ADD COLUMN IF NOT EXISTS `group_type` VARCHAR(32) NOT NULL DEFAULT '其他';
-ALTER TABLE `category` ADD COLUMN IF NOT EXISTS `sort_order` INT DEFAULT 0;
 
 -- 文章表
 CREATE TABLE IF NOT EXISTS `article` (
@@ -86,11 +78,11 @@ CREATE TABLE IF NOT EXISTS `like_record` (
 -- 消息通知表
 CREATE TABLE IF NOT EXISTS `notification` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `user_id` BIGINT NOT NULL COMMENT '接收通知的用户ID',
-  `article_id` BIGINT NOT NULL COMMENT '关联文章ID',
-  `type` VARCHAR(32) NOT NULL DEFAULT 'like' COMMENT '通知类型',
-  `message` VARCHAR(500) NOT NULL COMMENT '通知内容',
-  `is_read` TINYINT DEFAULT 0 COMMENT '0=未读, 1=已读',
+  `user_id` BIGINT NOT NULL,
+  `article_id` BIGINT NOT NULL,
+  `type` VARCHAR(32) NOT NULL DEFAULT 'like',
+  `message` VARCHAR(500) NOT NULL,
+  `is_read` TINYINT DEFAULT 0,
   `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_notif_user_id` (`user_id`),
